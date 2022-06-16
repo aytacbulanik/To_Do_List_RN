@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 const style =  StyleSheet.create({
     viewContainer: {
         backgroundColor: '#7DA453',
-        margin: 20,
+        margin: 10,
         borderRadius: 5,
         height: 50,
         padding: 10,
