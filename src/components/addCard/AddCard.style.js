@@ -5,20 +5,24 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").height / 5,
     },
     viewContainer: {
-    
+    margin: 10,
+    backgroundColor: '#37474F',
+    borderRadius: 15,
     },
     textInput: {
-        color: '#37474F',
+        color: 'white', //#37474F',
     },
     textInputContainer: {
         borderBottomWidth: 1,
         borderBottomColor: 'gray',
-        margin: 5,
         color: '#37474F',
+        padding: 10,
+        marginLeft: 10,
+        marginRight: 10,
         fontSize: 20,
     },
     buttonContainer:{
-        backgroundColor: '#37474F',
+        backgroundColor: '#808080',
         color: 'white',
         margin: 10,
         borderRadius: 10,

@@ -6,10 +6,10 @@ import AddCard from './components/addCard';
 const todoApp = () => {
   return(
     <SafeAreaView style={inLineStyle.container}>
-      <View>
+      <View style={inLineStyle.flatListContainer}>
        <RowCard />
       </View>
-      <View>
+      <View style={inLineStyle.addInputContainer}>
         <AddCard />
       </View>
     </SafeAreaView>
@@ -20,7 +20,13 @@ const inLineStyle = StyleSheet.create({
   container: {
     backgroundColor: '#102027',
     flex: 1,
-  }
+  },
+  flatListContainer: {
+    flex: 4,
+  },
+  addInputContainer: {
+    flex: 1,
+  },
   
   }
 )

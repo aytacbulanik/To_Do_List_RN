@@ -8,15 +8,16 @@ const addCard = (props) => {
             <View style={styles.viewContainer}>
             <TextInput  
             style={styles.textInputContainer}
-                placeholder='lüften bir iş giriniz...'
+            placeholder='Yapılacak...'
+           color= 'white'
+           placeholderTextColor={'#808080'}
             />
             <View style={styles.buttonContainer} >
-                <Button title='EKLE'
+                <Button title='Kaydet'
                 color={'white'}
                 onPress={props.kaydet}
             />
             </View>
-            
             </View>
         </View>
     );

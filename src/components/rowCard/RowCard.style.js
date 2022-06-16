@@ -2,9 +2,8 @@ import {StyleSheet} from 'react-native';
 
 const style =  StyleSheet.create({
     viewContainer: {
-        //flex: 1,
         backgroundColor: '#7DA453',
-        margin: 10,
+        margin: 20,
         borderRadius: 5,
         height: 50,
         padding: 10,
