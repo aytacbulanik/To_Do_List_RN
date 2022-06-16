@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View,TextInput,Button} from 'react-native';
 import styles from './AddCard.style';
 
 const addCard = (props) => {
 const [newToDo,setToDo] = useState("");
+
+function saveToDo() {
+    console.log(newToDo)
+};
 
     return(
         <View style={styles.container}>
@@ -14,14 +18,13 @@ const [newToDo,setToDo] = useState("");
            color= 'white'
             onChangeText={(words) => {
                setToDo(words);
-               console.log(newToDo);
             }}
            placeholderTextColor={'#808080'}
             />
             <View style={styles.buttonContainer} >
                 <Button title='Kaydet'
                 color={'white'}
-                onPress={props.kaydet}
+                onPress={saveToDo}
             />
             </View>
             </View>
