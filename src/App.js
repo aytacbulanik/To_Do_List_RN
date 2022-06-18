@@ -29,10 +29,10 @@ const inLineStyle = StyleSheet.create({
   },
   yapilacakContainer: {
     flexDirection: 'row',
-    marginTop: 20,  
+    marginTop: 20,
   },
   yapilacakSayiContainer: { 
-    justifyContent: 'flex-end', 
+   
   },
   flatListContainer: {
     flex: 4,
@@ -44,13 +44,13 @@ const inLineStyle = StyleSheet.create({
     color: '#fea500',
     fontSize: 30,
     fontWeight: 'bold',
-    
+    flex: 1,
 },
 yapilacakSayi: {
   color: '#fea500',
     fontSize: 30,
     fontWeight: 'bold',
-    
+    marginRight: 10,    
 },
   
   }
