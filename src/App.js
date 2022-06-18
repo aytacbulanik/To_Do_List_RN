@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
-import ToDoCard from './components/ToDoCard/ToDoCard';
-import SaveBar from './components/SaveBar/SaveBar';
+import {View, Text, StyleSheet, FlatList,SafeAreaView} from 'react-native';
+import ToDoCard from './components/ToDoCard.js';
+import SaveBar from './components/SaveBar';
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -46,7 +46,7 @@ function App() {
     <ToDoCard toDo={item} onChange={changeStatus} onDelete={deleteToDo} />
   );
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.inner_container}>
         <Text style={styles.title}>Yapılacaklar</Text>
         <Text style={styles.counter}>{counter}</Text>
@@ -58,7 +58,7 @@ function App() {
         keyExtractor={item => item.id}
       />
       <SaveBar onSave={addToDo} />
-    </View>
+      </SafeAreaView>
   );
 }
 export default App;
