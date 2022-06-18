@@ -1,19 +1,29 @@
-import React from 'react';
-import {SafeAreaView,View,StyleSheet,Text} from 'react-native';
+import React,{useState} from 'react';
+import {SafeAreaView,View,StyleSheet,Text,FlatList} from 'react-native';
 import RowCard from './components/rowCard';
 import AddCard from './components/addCard';
 
 const todoApp = () => {
+  const [yapilacakSayi, setYapilacakSayi] = useState(0);
+  const [yapilacakDizi , setYapilacakDizi] = useState(["sıra1","sıra2","sıra3"]);
+
+  function updateYapilacak() {
+    setYapilacakSayi(yapilacakDizi.indexOf)
+  }
+  const renderItem = ({item}) => <RowCard veri={item}/>
   return(
     <SafeAreaView style={inLineStyle.container}>
       <View style={inLineStyle.yapilacakContainer}>
         <Text style={inLineStyle.yapilacakText}> Yapılacaklar </Text>
         <View style={inLineStyle.yapilacakSayiContainer}>
-        <Text style={inLineStyle.yapilacakSayi}> 0 </Text>
+        <Text style={inLineStyle.yapilacakSayi}> {yapilacakSayi} </Text>
         </View>
       </View>
       <View style={inLineStyle.flatListContainer}>
-       <RowCard />
+       <FlatList 
+        data={yapilacakDizi}
+        renderItem={renderItem}
+       />
       </View>
       <View style={inLineStyle.addInputContainer}>
         <AddCard />
