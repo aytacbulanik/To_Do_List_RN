@@ -1,69 +1,78 @@
-import React,{useState} from 'react';
-import {SafeAreaView,View,StyleSheet,Text,FlatList} from 'react-native';
-import RowCard from './components/rowCard';
-import AddCard from './components/addCard';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
+import ToDoCard from './components/ToDoCard/ToDoCard';
+import SaveBar from './components/SaveBar/SaveBar';
 
-const todoApp = () => {
-  const [yapilacakSayi, setYapilacakSayi] = useState(0);
-  const [yapilacakDizi , setYapilacakDizi] = useState(["sıra1","sıra2","sıra3"]);
+function App() {
+  const [counter, setCounter] = useState(0);
+  const [toDo, setToDo] = useState([]);
 
-  function updateYapilacak() {
-    setYapilacakSayi(yapilacakDizi.indexOf)
+  function fixCounter() {
+    let count = 0;
+    toDo.forEach(item => (!item.isDone ? count++ : {}));
+    setCounter(count);
   }
-  const renderItem = ({item}) => <RowCard veri={item}/>
-  return(
-    <SafeAreaView style={inLineStyle.container}>
-      <View style={inLineStyle.yapilacakContainer}>
-        <Text style={inLineStyle.yapilacakText}> Yapılacaklar </Text>
-        <View style={inLineStyle.yapilacakSayiContainer}>
-        <Text style={inLineStyle.yapilacakSayi}> {yapilacakSayi} </Text>
-        </View>
-      </View>
-      <View style={inLineStyle.flatListContainer}>
-       <FlatList 
-        data={yapilacakDizi}
-        renderItem={renderItem}
-       />
-      </View>
-      <View style={inLineStyle.addInputContainer}>
-        <AddCard />
-      </View>
-    </SafeAreaView>
-  )
-};
+  useEffect(fixCounter, [toDo]);
 
-const inLineStyle = StyleSheet.create({
+  function addToDo(text) {
+    const newToDo = {
+      id: Date.now(),
+      title: text.toString(),
+      isDone: false,
+    };
+    setToDo([...toDo, newToDo]);
+  }
+  const changeStatus = changedtoDo => {
+    const newToDo = toDo.map(item => {
+      if (item.id === changedtoDo) {
+        if (item.isDone) {
+          return {...item, isDone: false};
+        } else {
+          return {...item, isDone: true};
+        }
+      }
+      return item;
+    });
+    setToDo(newToDo);
+  };
+  function deleteToDo(id) {
+    const newToDo = toDo;
+    var index = newToDo.indexOf(id);
+    newToDo.splice(index, 1);
+    setToDo(newToDo);
+  }
+
+  const renderToDo = ({item}) => (
+    <ToDoCard toDo={item} onChange={changeStatus} onDelete={deleteToDo} />
+  );
+  return (
+    <View style={styles.container}>
+      <View style={styles.inner_container}>
+        <Text style={styles.title}>Yapılacaklar</Text>
+        <Text style={styles.counter}>{counter}</Text>
+      </View>
+      <FlatList
+        style={styles.flat_list}
+        data={toDo}
+        renderItem={renderToDo}
+        keyExtractor={item => item.id}
+      />
+      <SaveBar onSave={addToDo} />
+    </View>
+  );
+}
+export default App;
+
+const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#102027',
+    backgroundColor: '#0f2027',
     flex: 1,
   },
-  yapilacakContainer: {
+  inner_container: {
     flexDirection: 'row',
-    marginTop: 20,
+    padding: 10,
   },
-  yapilacakSayiContainer: { 
-   
-  },
-  flatListContainer: {
-    flex: 4,
-  },
-  addInputContainer: {
-    flex: 1,
-  },
-  yapilacakText: {
-    color: '#fea500',
-    fontSize: 30,
-    fontWeight: 'bold',
-    flex: 1,
-},
-yapilacakSayi: {
-  color: '#fea500',
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginRight: 10,    
-},
-  
-  }
-)
-
-export default todoApp;
+  title: {fontWeight: 'bold', fontSize: 35, flex: 1, color: '#fea500'},
+  counter: {fontSize: 35, marginRight: 5, color: '#fea500'},
+  flat_list: {flex: 1},
+});
